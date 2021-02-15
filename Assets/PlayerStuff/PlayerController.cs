@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour
     public float grenadeCooldown = 3;
     float currentCooldown;
     public CooldownBar cooldownBar;
-    //public Slider mySlider;
+    public WeaponScriptableObject[] weapons;
+    public int currentWeapon = 0;
+    
     void Start()
     {
         character = GetComponent<CharacterController2D>();
@@ -63,10 +65,16 @@ public class PlayerController : MonoBehaviour
     {
         if (currentCooldown <= 0)
         {
+            var weapon = weapons[currentWeapon];
             var launchForce = aimVec * launchSpeed;
-            var clone = Instantiate(grenade, transform.position, Quaternion.identity);
+            var clone = Instantiate(weapon.prefab, transform.position, Quaternion.identity);
             clone.GetComponent<Rigidbody2D>().AddForce(launchForce);
-            currentCooldown = grenadeCooldown;
+            currentCooldown = weapon.cooldownTime;
+            if (clone.GetComponent<ArrowController>() != null)
+            {
+                var arrow = clone.GetComponent<ArrowController>();
+                arrow.arrowDirection = aimVec;
+            }
         }
     }
     public void OnAim(InputValue input)
@@ -105,5 +113,10 @@ public class PlayerController : MonoBehaviour
 
             rigidbody.AddForce(blastForce);
         }
+    }
+    public void OnChangeWeapon(InputValue input)
+    {
+        currentWeapon += 1;
+        currentWeapon %= weapons.Length;
     }
 }

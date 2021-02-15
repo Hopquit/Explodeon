@@ -377,6 +377,9 @@ MonoBehaviour:
   launchSpeed: 500
   grenadeCooldown: 4
   cooldownBar: {fileID: 3076838666037139746}
+  weapons:
+  - {fileID: 11400000, guid: 35e7a5dbcb35b5c4fb4f1c5ca3de7c88, type: 2}
+  - {fileID: 11400000, guid: bc671af979c90cc4c9becb2c660b450b, type: 2}
 --- !u!114 &6523879635608203707
 MonoBehaviour:
   m_ObjectHideFlags: 0
