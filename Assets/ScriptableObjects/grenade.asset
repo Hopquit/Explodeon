@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: grenade
   m_EditorClassIdentifier: 
   name: Grenade
-  cooldownTime: 3
+  cooldownTime: 1.25
   prefab: {fileID: 5450790221289317511, guid: 770c58a6185f84b43a6edb2427829fb1, type: 3}

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public CooldownBar cooldownBar;
     public WeaponScriptableObject[] weapons;
     public int currentWeapon = 0;
+    public Transform aimer;
     
     void Start()
     {
@@ -28,17 +29,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (currentCooldown <= 0)
-        {
+        //if (currentCooldown <= 0)
+        //{
             character.Move(moveVec.x * speed * Time.fixedDeltaTime, false, jump);
             jump = false;
-        }
+        //}
     }
     private void Update()
     {
         //Debug.DrawRay(transform.position, new Vector3(aimVec.x, aimVec.y, 0) * 5);
         currentCooldown -= Time.deltaTime;
-        cooldownBar.slider.value = currentCooldown / grenadeCooldown;
+        cooldownBar.slider.value = currentCooldown;
  
         // cooldownBar.slider.enabled = currentCooldown >= 0;
         if (currentCooldown >= 0)
@@ -70,10 +71,12 @@ public class PlayerController : MonoBehaviour
             var clone = Instantiate(weapon.prefab, transform.position, Quaternion.identity);
             clone.GetComponent<Rigidbody2D>().AddForce(launchForce);
             currentCooldown = weapon.cooldownTime;
+            cooldownBar.slider.maxValue = currentCooldown;
             if (clone.GetComponent<ArrowController>() != null)
             {
                 var arrow = clone.GetComponent<ArrowController>();
                 arrow.arrowDirection = aimVec;
+                arrow.playerWhoFired = name;
             }
         }
     }
@@ -118,5 +121,10 @@ public class PlayerController : MonoBehaviour
     {
         currentWeapon += 1;
         currentWeapon %= weapons.Length;
+    }
+    public void LateUpdate()
+    {
+        float angle = Mathf.Atan2(aimVec.y, aimVec.x) * Mathf.Rad2Deg;
+        aimer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

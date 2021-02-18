@@ -8,6 +8,7 @@ public class ArrowController : MonoBehaviour
     public float arrowSpeed = 10;
     public Transform explosion;
     public Vector2 arrowDirection;
+    public string playerWhoFired;
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -20,8 +21,11 @@ public class ArrowController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        if (other.name != playerWhoFired)
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
     private void LateUpdate()
     {

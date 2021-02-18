@@ -23,9 +23,10 @@ public class PlayerManager : MonoBehaviour
     }
     void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log(playerInput.gameObject);
+        //Debug.Log(playerInput.gameObject);
         targetGroup.AddMember(playerInput.transform, 1.0f, 5.0f);
         playerInput.gameObject.transform.position = spawnLocation.position;
+        playerInput.gameObject.name = "Player " + playerCount;
         playerCount += 1;
         if (playerCount >= 2)
         {

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: arrow
   m_EditorClassIdentifier: 
   name: Arrow
-  cooldownTime: 5
+  cooldownTime: 1.75
   prefab: {fileID: 1283749247112719191, guid: 5f706e908fb37ee4eab84a552050e3d1, type: 3}
