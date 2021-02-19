@@ -19,20 +19,27 @@ public class PlayerController : MonoBehaviour
     public WeaponScriptableObject[] weapons;
     public int currentWeapon = 0;
     public Transform aimer;
+    public AudioSource audioSpeaker;
+    public AudioClip jumpSound;
+    Animator animator;
     
     void Start()
     {
         character = GetComponent<CharacterController2D>();
         cooldownBar.slider = GameObject.Find("CooldownBar").GetComponent<Slider>();
         cooldownBar.gameObject.SetActive(false);
+
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
         //if (currentCooldown <= 0)
         //{
-            character.Move(moveVec.x * speed * Time.fixedDeltaTime, false, jump);
-            jump = false;
+        character.Move(moveVec.x * speed * Time.fixedDeltaTime, false, jump);
+        jump = false;
+
+        animator.SetBool("Moving", moveVec.x != 0);
         //}
     }
     private void Update()
@@ -61,6 +68,10 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputValue input)
     {
         jump = true;
+        if (character.m_Grounded)
+        {
+            audioSpeaker.PlayOneShot(jumpSound);
+        }
     }
     public void OnFire(InputValue input)
     {
