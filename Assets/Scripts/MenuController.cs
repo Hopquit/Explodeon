@@ -10,6 +10,14 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene("LevelSelect");
     }
+    public void OnBack ()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+    public void OnCredits ()
+    {
+        SceneManager.LoadScene("Credits");
+    }
     public void OnQuit ()
     {
         Application.Quit();
