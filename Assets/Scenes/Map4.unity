@@ -237,12 +237,12 @@ PrefabInstance:
     - target: {fileID: 7476065489090938901, guid: 966dbdd6d23ee574a985ba0b2379d082,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 85.85
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7476065489090938901, guid: 966dbdd6d23ee574a985ba0b2379d082,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 9.66
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 966dbdd6d23ee574a985ba0b2379d082, type: 3}
@@ -7018,7 +7018,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7928082, y: 1}
+    m_SensorSize: {x: 1.5205047, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
